@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core'
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core'
 import Modal from 'react-modal';
 
 import Gallery from './popup-image-gallery'
-import { getObjectInfo } from './getObjectList'
+import { getObjectInfo } from './getInfo'
 
 const useStyles = makeStyles({
     card: {
@@ -30,14 +30,6 @@ const useStyles = makeStyles({
         heigth: "100%",
     }
 })
-
-// const getData = async (id) => {
-//     const URL = `http://134.209.138.34/item/${id}`;
-//     const result = await fetch(URL);
-//     const data = await result.json();
-//     console.log(data);
-//     return data;
-// }
 
 const ObjectCard = ({ data }) => {
     const classes = useStyles();

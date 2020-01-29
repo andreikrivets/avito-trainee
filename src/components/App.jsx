@@ -1,16 +1,9 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ObjectCard from './object-card'
-import { getObjectList } from './getObjectList'
-
-// const getObjectList = async () => {
-//     console.log('запрос');
-//     const URL = "http://134.209.138.34/items";
-//     const result = await fetch(URL);
-//     const data = await result.json();
-//     return data;
-// }
+import { getObjectList } from './getInfo'
 
 const useStyles = makeStyles({
     wrapper: {
@@ -18,7 +11,7 @@ const useStyles = makeStyles({
         flexDirection: "column",
         flexWrap: "wrap",
         alignContent: "center",
-        marginTop: "5vw",
+        marginTop: "2vw",
     }
 })
 
@@ -35,11 +28,17 @@ const App = () => {
             })
     }
     document.addEventListener('DOMContentLoaded', getData);
-    if (Object.keys(data).length === 0) return null;
+
+    if (isLoading) return (
+        <div className={classes.wrapper}>
+                <CircularProgress />
+        </div>
+    )
+
     return (
         <div className={classes.wrapper}>
             {data.map((el, i) => {
-                return i<9 ? <ObjectCard data={el} /> : null
+                return <ObjectCard data={el} />
             })}
         </div>
     )
