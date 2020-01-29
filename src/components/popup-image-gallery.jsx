@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AliceCarousel from 'react-alice-carousel'
+import uniquid from 'uniquid'
 
 import 'react-alice-carousel/lib/alice-carousel.css'
 import './carousel-fix.css'
@@ -11,11 +12,11 @@ const useStyles = makeStyles({
         justifyContent: "center",
     },
     image: {
-        pointerEvents: "none"
+        pointerEvents: "none",
     }
 })
 
-const Gallery = ({ images }) => {
+const Gallery = ({ images, title }) => {
     const classes = useStyles();
     if (Object.keys(images).length === 0) return null 
     return (
@@ -23,7 +24,7 @@ const Gallery = ({ images }) => {
             <AliceCarousel mouseTrackingEnabled buttonsDisabled={true}>
                 {images.map((el) => {
                     return (
-                        <img src={el} className={classes.image}></img>
+                        <img src={el} alt={title} className={classes.image} key={uniquid()}></img>
                     )
                 })}
             </AliceCarousel>

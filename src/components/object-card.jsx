@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core'
-import Modal from 'react-modal';
+import Modal from 'react-modal'
 
 import Gallery from './popup-image-gallery'
 import { getObjectInfo } from './getInfo'
 
 const useStyles = makeStyles({
     card: {
-        width: "25%",
-        minWidth: 300,
-        height: "25%",
-        minHeight: 300,
+        width: 300,
+        height: 400,
+        minWidth: "17vw",
+
         marginBottom: 50,
+        marginTop: 25
     },
     cardAction: {
         height: "100%",
@@ -57,11 +58,11 @@ const ObjectCard = ({ data }) => {
                 onRequestClose={closeModal}
                 contentLabel="Example Modal"
             >
-                <Gallery images={images} />
-                <Typography gutterBottom variant="h5" component="h3">
+                <Gallery images={images} title={data.title} />
+                <Typography gutterBottom variant="h5" component="h3" style={{textAlign: "center"}}>
                     {info[0] ? info[0].title : null}
                 </Typography>
-                <Typography variant="body1" color="textPrimary" component="p">
+                <Typography variant="body1" color="textPrimary" component="h5" style={{textAlign: "center"}}>
                     {info[0] ? info[0].price : null}
                 </Typography>
                 <Typography variant="body2" color="textPrimary" component="p">
@@ -74,7 +75,7 @@ const ObjectCard = ({ data }) => {
                         component="img"
                         alt={data.title}
                         image={data.previewImage}
-                        height="70%"
+                        // height="70%"
                     />
                     <CardContent className={classes.wide}>
                         <Typography gutterBottom variant="h5" component="h3">
