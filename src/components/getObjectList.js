@@ -6,4 +6,13 @@ const getObjectList = async () => {
     return data;
 }
 
-export default getObjectList
+const getObjectInfo = async (id) => {
+    const URL = `http://134.209.138.34/item/${id}`;
+    const result = await fetch(URL);
+    const data = await result.json();
+    console.log(data);
+    return data;
+}
+
+
+export { getObjectList, getObjectInfo }

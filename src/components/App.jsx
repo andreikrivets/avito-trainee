@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 
 import ObjectCard from './object-card'
+import { getObjectList } from './getObjectList'
 
-const getObjectList = async () => {
-    console.log('запрос');
-    const URL = "http://134.209.138.34/items";
-    const result = await fetch(URL);
-    const data = await result.json();
-    return data;
-}
+// const getObjectList = async () => {
+//     console.log('запрос');
+//     const URL = "http://134.209.138.34/items";
+//     const result = await fetch(URL);
+//     const data = await result.json();
+//     return data;
+// }
 
 const useStyles = makeStyles({
     wrapper: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
         flexDirection: "column",
         flexWrap: "wrap",
         alignContent: "center",
+        marginTop: "5vw",
     }
 })
 

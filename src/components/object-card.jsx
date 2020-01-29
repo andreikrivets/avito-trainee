@@ -3,13 +3,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core'
 import Modal from 'react-modal';
 
+import Gallery from './popup-image-gallery'
+import { getObjectInfo } from './getObjectList'
+
 const useStyles = makeStyles({
     card: {
         width: "25%",
         minWidth: 300,
         height: "25%",
-        maxHeight: "25%",
-        marginBottom: 50
+        minHeight: 300,
+        marginBottom: 50,
     },
     cardAction: {
         height: "100%",
@@ -28,23 +31,27 @@ const useStyles = makeStyles({
     }
 })
 
-const getData = async (id) => {
-    const URL = `http://134.209.138.34/item/${id}`;
-    const result = await fetch(URL);
-    const data = await result.json();
-    console.log(data);
-    return data;
-}
+// const getData = async (id) => {
+//     const URL = `http://134.209.138.34/item/${id}`;
+//     const result = await fetch(URL);
+//     const data = await result.json();
+//     console.log(data);
+//     return data;
+// }
 
 const ObjectCard = ({ data }) => {
     const classes = useStyles();
     Modal.setAppElement('#root')
     const [modalIsOpen, setIsOpen] = useState(false);
     const [info, setInfo] = useState({});
-
+    const [images, setImages] = useState({});
     const openModal = () => {
         setIsOpen(true);
-        getData(data.id).then(resp => setInfo(resp));
+        getObjectInfo(data.id)
+            .then(resp => {
+                setInfo(resp)
+                setImages(resp[0].images)
+            })
     }
   
     const closeModal = () => {
@@ -58,12 +65,7 @@ const ObjectCard = ({ data }) => {
                 onRequestClose={closeModal}
                 contentLabel="Example Modal"
             >
-                <CardMedia
-                component="img"
-                alt={data.title}
-                image={data.previewImage}
-                height="70%"
-                />
+                <Gallery images={images} />
                 <Typography gutterBottom variant="h5" component="h3">
                     {info[0] ? info[0].title : null}
                 </Typography>
