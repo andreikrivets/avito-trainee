@@ -1,0 +1,1 @@
+{"version":3,"sources":["carousel-fix.css"],"names":[],"mappings":"AAAA,4BACI,2BACJ","file":"main.3036628b.chunk.css","sourcesContent":[".alice-carousel__stage-item {\r\n    text-align: center !important;\r\n}"]}
